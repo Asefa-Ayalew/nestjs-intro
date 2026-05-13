@@ -1,28 +1,34 @@
-import { Post } from "src/modules/posts/entities/post.entity";
-import { Profile } from "src/modules/profiles/entities/profile.entity";
 import {
   Column,
+  CreateDateColumn,
   Entity,
-  OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
-} from "typeorm";
-
+} from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id!: string;
 
   @Column()
   firstName!: string;
 
+  @Column()
+  lastName!: string;
+
   @Column({ unique: true })
   email!: string;
 
-  @OneToMany(() => Post, (post) => post.user)
-  posts!: Post[];
+  @Column()
+  password!: string;
 
-  @OneToOne(() => Profile, (profile) => profile.user)
-  profile!: Profile;
+  @Column({
+    type: 'enum',
+    enum: ['admin', 'hr', 'employee'],
+    default: 'employee',
+  })
+  role!: string;
+
+  @CreateDateColumn()
+  createdAt!: Date;
 }

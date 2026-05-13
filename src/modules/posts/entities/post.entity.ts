@@ -12,8 +12,8 @@ export class Post {
   @Column()
   content!: string;
 
-  @ManyToOne(() => User, (user) => user.posts, {
-    onDelete: 'CASCADE',
-  })
+  // @ManyToOne(() => User, (user) => user.posts, {
+  //   onDelete: 'CASCADE',
+  // })
   user!: User;
 }

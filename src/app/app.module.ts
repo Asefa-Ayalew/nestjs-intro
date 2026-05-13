@@ -7,6 +7,7 @@ import { typeOrmConfig } from 'src/config/typeorm.config';
 import { UsersModule } from 'src/modules/users/users.module';
 import { PostsModule } from 'src/modules/posts/posts.module';
 import { ProfilesModule } from 'src/modules/profiles/profiles.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ProfilesModule } from 'src/modules/profiles/profiles.module';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot(typeOrmConfig),
+    AuthModule,
     UsersModule,
     PostsModule,
     ProfilesModule

@@ -19,9 +19,9 @@ export class Profile {
   @Column()
   gender!: string;
 
-  @OneToOne(() => User, (user) => user.profile, {
-    onDelete: "CASCADE",
-  })
+  // @OneToOne(() => User, (user) => user.profile, {
+  //   onDelete: "CASCADE",
+  // })
   @JoinColumn()
   user!: User;
 }
