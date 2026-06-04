@@ -4,6 +4,7 @@ import { User } from './entities/user-entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user-dto';
 import * as bcrypt from 'bcrypt';
+import { UserRole, UserStatus } from './enums/user.enum';
 
 @Injectable()
 export class UsersService {
@@ -26,6 +27,8 @@ export class UsersService {
 
     const user = this.userRepository.create({
       ...createUserDto,
+      role: UserRole.STUDENT,
+      status: UserStatus.ACTIVE,
       password: hashedPassword,
     });
 

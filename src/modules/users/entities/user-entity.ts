@@ -3,7 +3,9 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
+import { UserRole, UserStatus } from '../enums/user.enum';
 
 @Entity()
 export class User {
@@ -24,11 +26,24 @@ export class User {
 
   @Column({
     type: 'enum',
-    enum: ['admin', 'hr', 'employee'],
-    default: 'employee',
+    enum: UserRole,
+    default: UserRole.ADMIN,
   })
-  role!: string;
+  role!: UserRole;
+
+  @Column({
+    type: 'enum',
+    enum: UserStatus,
+    default: UserStatus.ACTIVE,
+  })
+  status!: UserStatus;
+
+  @Column()
+  profilePicture!: string;
 
   @CreateDateColumn()
   createdAt!: Date;
+
+  @UpdateDateColumn()
+  updatedAt!: Date;
 }
