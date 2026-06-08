@@ -2,10 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { UserRole, UserStatus } from '../enums/user.enum';
+import { Course } from 'src/course/entities/course.entity';
 
 @Entity()
 export class User {
@@ -46,4 +48,7 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt!: Date;
+
+  @OneToMany(()=>Course, (course)=>course.instructor)
+  courses!: Course[];
 }

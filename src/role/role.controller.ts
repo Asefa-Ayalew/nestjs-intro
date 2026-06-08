@@ -20,7 +20,7 @@ export class RoleController {
   @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createRoleDto: CreateRoleDto) {
-    console.log("CreateRoleDto:", createRoleDto);
+    console.log('CreateRoleDto:', createRoleDto);
     return this.roleService.create(createRoleDto);
   }
 

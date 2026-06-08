@@ -1,4 +1,5 @@
 import { IsString } from "class-validator";
+import { Course } from "src/course/entities/course.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity()
@@ -26,6 +27,9 @@ export class Category {
 
     @OneToMany(() => Category, category => category.parent)
     children!: Category[];
+
+    @OneToMany(() => Course, course => course.category)
+    courses!: Course[];
 
     @CreateDateColumn()
     createdAt!: Date;
