@@ -1,5 +1,5 @@
 import { IsString } from "class-validator";
-import { Course } from "src/course/entities/course.entity";
+import { Course } from "src/modules/course/entities/course.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity()

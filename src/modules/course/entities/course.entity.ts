@@ -1,6 +1,7 @@
 import { IsOptional, IsString } from 'class-validator';
-import { Category } from 'src/category/entities/category.entity';
+import { Category } from 'src/modules/category/entities/category.entity';
 import { CourseLevel, CourseStatus } from 'src/common/enums/course.enum';
+import { Lesson } from 'src/modules/lesson/entities/lesson.entity';
 import { User } from 'src/modules/users/entities/user-entity';
 import {
   Column,
@@ -64,6 +65,13 @@ export class Course {
   @ManyToOne(()=>Category, (category)=> category.courses)
   @JoinColumn({ name: 'categoryId' })
   category!: Category;
+
+  @Column('uuid')
+  lessonId!: string;
+
+  @ManyToOne(() => Lesson, (lesson) => lesson.courseId, { nullable: true, onDelete: 'SET NULL' })
+  @JoinColumn({ name: 'lessonId' })
+  lesson!: Lesson;
 
   @Column({ type: 'int', default: 0 })
   totalStudents!: number;
